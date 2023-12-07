@@ -7,10 +7,8 @@ Doorkeeper.configure do
 
   # This block will be called to check whether the resource owner is authenticated or not.
   resource_owner_authenticator do
-    raise "Please configure doorkeeper resource_owner_authenticator block located in #{__FILE__}"
-    # Put your resource owner authentication logic here.
-    # Example implementation:
-    #   User.find_by(id: session[:user_id]) || redirect_to(new_user_session_url)
+    p 'entro esource_owner_authenticator'
+    OauthApplication.find_by(uid: params[:client_id], redirect_uri: params[:redirect_uri])
   end
 
   # If you didn't skip applications controller from Doorkeeper routes in your application routes.rb
@@ -37,6 +35,7 @@ Doorkeeper.configure do
   # access_token_class "Doorkeeper::AccessToken"
   # access_grant_class "Doorkeeper::AccessGrant"
   # application_class "Doorkeeper::Application"
+  application_class 'OauthApplication'
   #
   # Don't forget to include Doorkeeper ORM mixins into your custom models:
   #
@@ -454,6 +453,9 @@ Doorkeeper.configure do
   # skip_authorization do |resource_owner, client|
   #   client.superapp? or resource_owner.admin?
   # end
+  skip_authorization do
+    true
+  end
 
   # Configure custom constraints for the Token Introspection request.
   # By default this configuration option allows to introspect a token by another
