@@ -31,3 +31,5 @@ end
 gem "devise", "~> 4.9"
 
 gem "doorkeeper", "~> 5.6"
+
+gem "kamal", "~> 1.3"

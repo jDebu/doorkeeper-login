@@ -84,5 +84,6 @@ test:
 production:
   <<: *default
   database: doorkeeper_login_production
-  username: doorkeeper_login
-  password: <%= ENV["DOORKEEPER_LOGIN_DATABASE_PASSWORD"] %>
+  username: postgres
+  password: <%= ENV["POSTGRES_PASSWORD"] %>
+  host: <%= ENV["DB_HOST"] %>
